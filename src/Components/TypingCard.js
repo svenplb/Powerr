@@ -60,6 +60,7 @@ function TypingCard({}) {
           clearable
           underlined
           initialValue="NextUI"
+          color="secondary"
           value={userInput}
           onChange={(e) => processInput(e.target.value)}
         />
