@@ -1,17 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// 1. Import `createTheme`
+import { createTheme, NextUIProvider, Text } from "@nextui-org/react"
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// 2. Call `createTheme` and pass your custom values
+const myDarkTheme = createTheme({
+  type: 'dark',
+  theme: {
+    colors: {
+      // brand colors
+      background: '#000000',
+      text: '#f5f5f5',
+      // you can also create your own color
+      myDarkColor: '#ff4ecd'
+      // ...  more colors
+    },
+    space: {},
+  }
+})
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <NextUIProvider theme={myDarkTheme}>
+  <App />
+</NextUIProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
