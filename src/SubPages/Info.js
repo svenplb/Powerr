@@ -24,7 +24,7 @@ function Info() {
         weight="bold"
         className="pspace"
       >
-        Gryd - Info
+        Galaxite
       </Text>
       <Text h2 className="headspace">
         About

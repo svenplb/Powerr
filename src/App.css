@@ -42,3 +42,9 @@ p {
     @apply mb-12;
   }
 }
+@media only screen and (max-width: 1500px) {
+  section {
+      padding: 50px 10vw;
+    }
+
+}
