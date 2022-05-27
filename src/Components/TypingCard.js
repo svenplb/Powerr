@@ -26,14 +26,14 @@ function Word(props) {
   })
 
   if (correct === true) {
-    return <span className="correct text-teal-400">{text}({rerender.current}) </span>;
+    return <span className="correct text-teal-400">{text} </span>;
   }
 
   if (correct === false) {
-    return <span className=" text-rose-900">{text}({rerender.current}) </span>;
+    return <span className=" text-rose-900">{text} </span>;
   }
   if (active) {
-    return <span className="text-violet-400">{text}({rerender.current}) </span>;
+    return <span className="text-violet-400">{text} </span>;
   }
 
   return (
