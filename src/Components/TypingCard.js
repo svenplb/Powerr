@@ -1,5 +1,6 @@
 import "../App.css";
 import { Input, KeyCode, NextUIProvider } from "@nextui-org/react";
+import Word from "./Word";
 import {
   Button,
   Grid,
@@ -10,44 +11,12 @@ import {
   Row,
   User,
 } from "@nextui-org/react";
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import Timer from "./Timer";
+
 const getWords = () =>
   `the at there some my of be use her than and this an would first a have each make water to from which like been in or she him call is one do into who you had how time oil that by their has its it word if look now he but will two find was not up more long for what other write down on all about go day are were out see did as we many number get with when then no come his your them way made they can these could may I said so people 
 part`.split(" ");
-
-function Word(props) {
-
-  const { text, active, correct } = props;
-
-  const rerender = useRef(0)
-
-  useEffect(() => {
-    rerender.current += 1;
-  })
-
-  if (correct === true) {
-    return <span className="correct text-teal-400">{text} </span>;
-  }
-
-  if (correct === false) {
-    return <span className=" text-rose-900">{text} </span>;
-  }
-  if (active) {
-    return <span className="text-violet-400">{text} </span>;
-  }
-
-  return (
-    <span
-      style={{
-        color: active ? "#9750DD" : "",
-        fontWeight: active ? "bold" : "b",
-      }}
-    >
-      {props.text}{" "}
-    </span>
-  );
-}
-Word = React.memo(Word)
 
 function TypingCard({}) {
   const [userInput, setUserInput] = useState("");
@@ -55,8 +24,13 @@ function TypingCard({}) {
   const [progress, setProgress] = useState(0);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
+  const [startCounting, setStartCounting] = useState(false);
 
   function processInput(value) {
+    if(!startCounting) {
+      setStartCounting(true)
+    }
+
     if (value.endsWith(" ")) {
       setActiveWordIndex((index) => index + 1);
       setProgress((progress) => progress + 1);
@@ -103,6 +77,7 @@ function TypingCard({}) {
           <Progress color="error" value={75}></Progress>
           <p className="m-4 font-bold">{75}%</p>
         </div>
+        <Timer startCounting={startCounting} />
         <Divider className="my-4"></Divider>
         <Text>{getWords}</Text>
         <Text css={{ fontFamily: "monospace", fontSize: "$md" }}>
@@ -118,10 +93,10 @@ function TypingCard({}) {
         </Text>
         <Input
           size="xl"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           color="secondary"
           clearable
           underlined
