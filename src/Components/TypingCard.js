@@ -77,7 +77,9 @@ function TypingCard({}) {
           <Progress color="error" value={75}></Progress>
           <p className="m-4 font-bold">{75}%</p>
         </div>
-        <Timer startCounting={startCounting} />
+        
+        <Timer startCounting={startCounting} correctWords={correctWordArray.filter(Boolean).length} />
+
         <Divider className="my-4"></Divider>
         <Text>{getWords}</Text>
         <Text css={{ fontFamily: "monospace", fontSize: "$md" }}>
