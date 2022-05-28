@@ -4,11 +4,13 @@ function Timer(props) {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const { correctWords, startCounting } = props;
   useEffect(() => {
+    let id;
     if (startCounting) {
-      setInterval(() => {
+      id = setInterval(() => {
         setTimeElapsed((oldTime) => oldTime + 1);
-      }, 1000);
+      }, 1000)
     }
+    return () => {clearInterval(id)}
   }, [startCounting]);
 
   const minutes = timeElapsed/60;

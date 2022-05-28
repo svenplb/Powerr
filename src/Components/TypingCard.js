@@ -21,7 +21,7 @@ part`.split(" ");
 function TypingCard({}) {
   const [userInput, setUserInput] = useState("");
   const word = useRef(getWords());
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(1);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
   const [startCounting, setStartCounting] = useState(false);
@@ -32,6 +32,12 @@ function TypingCard({}) {
     }
 
     if (value.endsWith(" ")) {
+      if(activeWordIndex === word.current.length - 1) {
+        setUserInput("completed")
+        setStartCounting(false)
+        return
+      }
+
       setActiveWordIndex((index) => index + 1);
       setProgress((progress) => progress + 1);
       setUserInput("");
