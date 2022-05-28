@@ -30,26 +30,24 @@ function Info() {
         About
       </Text>
       <Text h3 className="pspace">
-        Gryd is{" "}
+        Galaxite is a{" "}
         <span className=" bg-opacity-40 bg-violet-800 ">
-          modern typing test
+          modern typing test.
         </span>
-        , featuring many test modes, an account system to save your typing speed
-        history and user configurable features like themes, a smooth caret and
-        more. Gryd is an{" "}
+        {" "}Galaxite is a{" "}
         <span className=" bg-opacity-40 bg-violet-800 ">open source</span>{" "}
         project, so you can go checkout the{" "}
-        <a className=" font-semibold">Github </a>repository. Gryd uses the{" "}
+        <a className=" font-semibold">Github </a>repository. Galaxite uses the{" "}
         <span className="bg-opacity-40 bg-violet-800">
           most common 100 words
         </span>{" "}
-        in the English language to generate its tests. You can use{" "}
-        <span className="bg-opacity-40 bg-violet-800"> tab to restart</span> the
-        typing test while typing or at the result of the test. After completing
+        in the English language to generate its tests. <br/> You can press the {" "}
+        <span className="bg-opacity-40 bg-violet-800"> reset button or tab to restart</span> the
+        typing test anytime. After completing
         a test you will be able to see your wpm.{" "}
         <span className="bg-opacity-40 bg-violet-800">
           {" "}
-          Wpm stands for words per minute
+          Wpm stands for words per minute.
         </span>{" "}
       </Text>
       <Text h2 className="headspace">
@@ -57,12 +55,10 @@ function Info() {
       </Text>
       <Text h3>
         If you encounter a bug, or have a feature request - join the Discord
-        server, send me an email, a direct message on Twitter or create an issue
-        on GitHub. Or, send me a message through this box:
+        or send a direct message on Twitter/Discord, create an issue
+        on GitHub, or send me a message through this box:
       </Text>
       <Text h3 className="pspace">
-        {" "}
-        Or, send me a message through this box:
       </Text>
       <div className="flex gap-3">
         <Textarea
@@ -85,14 +81,14 @@ function Info() {
       <Text h2 className="headspace">
         Changelog
       </Text>
-      <a>Current Version: 1.0</a>
+      <a>Current Version: 1.1</a>
       <Text h3 className="headspace"></Text>
       {/* --- */}
       <ol className="pspace">
-        <li>- Added new background</li>
-        <li>- Added Glassmorphism</li>
-        <li>- Added Settings/Info/Home page</li>
-        <li>- Added Prograss bar on top of test</li>
+        <li>- Added Timer</li>
+        <li>- Decreased rerenders</li>
+        <li>- Added if written words are correct/incorrect </li>
+        <li>- Added WPM display</li>
       </ol>
 
       {/* --- */}

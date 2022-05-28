@@ -1,6 +1,7 @@
 import "../App.css";
 import { Input, KeyCode, NextUIProvider } from "@nextui-org/react";
 import Word from "./Word";
+import ResetButton from "./ResetButton";
 import {
   Button,
   Grid,
@@ -25,6 +26,16 @@ function TypingCard({}) {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
   const [startCounting, setStartCounting] = useState(false);
+  const [resetCounting, setResetCounting] = useState(false);
+
+  function handleReset() {
+    setProgress(0)
+    setActiveWordIndex(0)
+    setCorrectWordArray([])
+    setStartCounting(false)
+    setResetCounting(true);
+    setUserInput("")
+  }
 
   function processInput(value) {
     if(!startCounting) {
@@ -33,7 +44,7 @@ function TypingCard({}) {
 
     if (value.endsWith(" ")) {
       if(activeWordIndex === word.current.length - 1) {
-        setUserInput("completed")
+        setUserInput("")
         setStartCounting(false)
         return
       }
@@ -84,7 +95,7 @@ function TypingCard({}) {
           <p className="m-4 font-bold">{75}%</p>
         </div>
         
-        <Timer startCounting={startCounting} correctWords={correctWordArray.filter(Boolean).length} />
+        <Timer resetCounting={resetCounting} startCounting={startCounting} correctWords={correctWordArray.filter(Boolean).length} />
 
         <Divider className="my-4"></Divider>
         <Text>{getWords}</Text>
@@ -113,6 +124,7 @@ function TypingCard({}) {
           onChange={(e) => processInput(e.target.value)}
         />
       </Card>
+      <button onClick={handleReset}>reset</button>
     </div>
   );
 }
