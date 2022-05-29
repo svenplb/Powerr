@@ -26,27 +26,27 @@ function TypingCard({}) {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
   const [startCounting, setStartCounting] = useState(false);
-  const [resetCounting, setResetCounting] = useState(false);
 
   function handleReset() {
-    setProgress(0)
-    setActiveWordIndex(0)
-    setCorrectWordArray([])
-    setStartCounting(false)
-    setResetCounting(true);
-    setUserInput("")
+    setProgress(0);
+    setActiveWordIndex(0);
+    setCorrectWordArray([]);
+    setStartCounting(false);
+    setUserInput("");
   }
 
   function processInput(value) {
-    if(!startCounting) {
-      setStartCounting(true)
+    if (!startCounting) {
+      setStartCounting(true);
     }
 
+    console.log(value.KeyCode);
+
     if (value.endsWith(" ")) {
-      if(activeWordIndex === word.current.length - 1) {
-        setUserInput("")
-        setStartCounting(false)
-        return
+      if (activeWordIndex === word.current.length - 1) {
+        setUserInput("");
+        setStartCounting(false);
+        return;
       }
 
       setActiveWordIndex((index) => index + 1);
@@ -94,8 +94,11 @@ function TypingCard({}) {
           <Progress color="error" value={75}></Progress>
           <p className="m-4 font-bold">{75}%</p>
         </div>
-        
-        <Timer resetCounting={resetCounting} startCounting={startCounting} correctWords={correctWordArray.filter(Boolean).length} />
+
+        <Timer
+          startCounting={startCounting}
+          correctWords={correctWordArray.filter(Boolean).length}
+        />
 
         <Divider className="my-4"></Divider>
         <Text>{getWords}</Text>
