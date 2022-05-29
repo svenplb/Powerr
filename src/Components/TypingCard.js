@@ -26,7 +26,7 @@ function TypingCard({}) {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
   const [startCounting, setStartCounting] = useState(false);
-
+  
   function handleReset() {
     setProgress(0);
     setActiveWordIndex(0);
@@ -35,12 +35,16 @@ function TypingCard({}) {
     setUserInput("");
   }
 
+  function handleTabbed(KeyCode) {
+    if (KeyCode === "Tab") {
+      handleReset();
+    }
+  }
+
   function processInput(value) {
     if (!startCounting) {
       setStartCounting(true);
     }
-
-    console.log(value.KeyCode);
 
     if (value.endsWith(" ")) {
       if (activeWordIndex === word.current.length - 1) {
@@ -120,11 +124,13 @@ function TypingCard({}) {
           autoCapitalize="off"
           spellCheck="false"
           color="secondary"
+          autoFocus
           clearable
           underlined
           initialValue="NextUI"
           value={userInput}
           onChange={(e) => processInput(e.target.value)}
+          onKeyDown={(e) => handleTabbed(e.key)}
         />
       </Card>
       <button onClick={handleReset}>reset</button>
