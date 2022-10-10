@@ -15,8 +15,9 @@ function TypingCard({}) {
   const getWords = () => typingList.split(" ");
 
   const wordAmount = 30;
-  const word = useRef(getWords());
-  const [wordtwo, setWordTwo] = useState(getWords());
+  // const word = useRef(getWords());
+  // const [wordtwo, setWordTwo] = useState(getWords());
+  const [word, setWord] = useState(getWords());
   const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
@@ -30,26 +31,22 @@ function TypingCard({}) {
     setStartCounting(false);
     setUserInput("");
     setTestFinished(false);
-    renderWords();
     setTypingList((typingList = renderWords()));
     getWords();
-
-    console.log("word:")
-    console.log(word)
-    console.log("wordtwo :")
-    console.log(wordtwo)
+    renderWords();
+   
   }
   function renderWords() {
     let genWords = "";
     let wordAmount = 30;
     for (let i = 0; i <= wordAmount; i++) {
-      const randomNumber = [Math.floor(Math.random() * (1000 - 1 + 1) + 1)];
+      const randomNumber = [Math.floor(Math.random() * (150 - 1 + 1) + 1)];
       if(i == wordAmount) {
         genWords = genWords + commonWords.commonWords[randomNumber];
       }
       else {
         genWords = genWords + commonWords.commonWords[randomNumber] + " ";
-      
+        
       }
     }
     return(genWords);
@@ -68,7 +65,8 @@ function TypingCard({}) {
     }
 
     if (value.endsWith(" ")) {
-      if (activeWordIndex === word.current.length - 1) {
+      // if (activeWordIndex === word.current.length - 1) {
+      if (activeWordIndex === word.length - 1) {
         setUserInput("");
         setStartCounting(false);
         setTestFinished(true);
@@ -82,7 +80,8 @@ function TypingCard({}) {
       setCorrectWordArray((data) => {
         const newword = value.trim();
         const newResult = [...data];
-        newResult[activeWordIndex] = newword === word.current[activeWordIndex];
+        // newResult[activeWordIndex] = newword === word.current[activeWordIndex];
+        newResult[activeWordIndex] = newword === word[activeWordIndex];
 
         return newResult;
       });
@@ -90,7 +89,6 @@ function TypingCard({}) {
       setUserInput(value);
     }
   }
-  console.log(testFinished);
   return testFinished ? (
     <motion.div>
       <Result
@@ -118,10 +116,9 @@ function TypingCard({}) {
             timeElapsed={timeElapsed}
             setTimeElapsed={setTimeElapsed}
           />
-
-          <p>{typingList}</p>
           <p css={{ fontFamily: "monospace", fontSize: "$md" }}>
-            {word.current.map((word, index) => {
+            {/* {word.current.map((word, index) => { */}
+            {word.map((word, index) => {
               return (
                 <Word
                   text={word}
