@@ -1,42 +1,63 @@
+import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import commonWords from "../Data/word.json";
 import "../App.css";
-import { Input, KeyCode, NextUIProvider } from "@nextui-org/react";
 import Word from "./Word";
 import ResetButton from "./ResetButton";
-import {
-  Button,
-  Grid,
-  Progress,
-  Card,
-  Text,
-  Divider,
-  Row,
-  User,
-} from "@nextui-org/react";
-import React, { useState, useRef, useEffect } from "react";
+import Result from "./Result";
 import Timer from "./Timer";
-
-const getWords = () =>
-  `the at there some my of be use her than and this an would first a have each make water to from which like been in or she him call is one do into who you had how time oil that by their has its it word if look now he but will two find was not up more long for what other write down on all about go day are were out see did as we many number get with when then no come his your them way made they can these could may I said so people 
-part`.split(" ");
+import Wordlist from "./Wordlist";
+import { MotionConfig } from "framer-motion";
 
 function TypingCard({}) {
-  const [userInput, setUserInput] = useState("");
+  let [typingList, setTypingList] = useState(renderWords());
+
+  const getWords = () => typingList.split(" ");
+
+  const wordAmount = 30;
   const word = useRef(getWords());
-  const [progress, setProgress] = useState(1);
+  const [wordtwo, setWordTwo] = useState(getWords());
+  const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
   const [startCounting, setStartCounting] = useState(false);
-  
+  const [testFinished, setTestFinished] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+
   function handleReset() {
-    setProgress(0);
     setActiveWordIndex(0);
     setCorrectWordArray([]);
     setStartCounting(false);
     setUserInput("");
+    setTestFinished(false);
+    renderWords();
+    setTypingList((typingList = renderWords()));
+    getWords();
+
+    console.log("word:")
+    console.log(word)
+    console.log("wordtwo :")
+    console.log(wordtwo)
+  }
+  function renderWords() {
+    let genWords = "";
+    let wordAmount = 30;
+    for (let i = 0; i <= wordAmount; i++) {
+      const randomNumber = [Math.floor(Math.random() * (1000 - 1 + 1) + 1)];
+      if(i == wordAmount) {
+        genWords = genWords + commonWords.commonWords[randomNumber];
+      }
+      else {
+        genWords = genWords + commonWords.commonWords[randomNumber] + " ";
+      
+      }
+    }
+    return(genWords);
   }
 
   function handleTabbed(KeyCode) {
-    if (KeyCode === "Tab") {
+    if (KeyCode.key === "Tab") {
+      KeyCode.preventDefault();
       handleReset();
     }
   }
@@ -50,11 +71,12 @@ function TypingCard({}) {
       if (activeWordIndex === word.current.length - 1) {
         setUserInput("");
         setStartCounting(false);
+        setTestFinished(true);
+
         return;
       }
 
       setActiveWordIndex((index) => index + 1);
-      setProgress((progress) => progress + 1);
       setUserInput("");
 
       setCorrectWordArray((data) => {
@@ -68,73 +90,62 @@ function TypingCard({}) {
       setUserInput(value);
     }
   }
-  return (
-    <div className="TypingCard">
-      <Card
-        className="border-none"
-        css={{
-          background: "rgba(150, 150, 150, 0.04)",
-          backdropFilter: "blur(1px)",
-        }}
-      >
-        <div className="flex">
-          <User
-            src="https://avatars.githubusercontent.com/u/97550617?v=4"
-            name="Sven"
-            bordered
-            color="secondary"
-          ></User>
-          <Progress color="secondary" value={progress}></Progress>
-          <p className="m-4 font-bold">{progress}%</p>
-        </div>
-        <div className="m-4"></div>
-        <div className="flex">
-          <User
-            src="https://qph.cf2.quoracdn.net/main-qimg-ab45488a5f2a231287ab232486154ae0-lq"
-            name="User1"
-            bordered
-            color="error"
-          ></User>
-          <Progress color="error" value={75}></Progress>
-          <p className="m-4 font-bold">{75}%</p>
-        </div>
+  console.log(testFinished);
+  return testFinished ? (
+    <motion.div>
+      <Result
+        correctWords={correctWordArray.filter(Boolean).length}
+        totalWords={getWords()}
+        timeElapsed={timeElapsed}
+        testFinished={testFinished}
+        setTestFinished={setTestFinished}
+      />
+    </motion.div>
+  ) : (
+    //    startCounting={startCounting}
+    //    correctWords={correctWordArray.filter(Boolean).length}
 
-        <Timer
-          startCounting={startCounting}
-          correctWords={correctWordArray.filter(Boolean).length}
-        />
+    <motion.div>
+      <div className="TypingCard">
+        <div className="border-none">
+          <div className="flex"></div>
+          <div className="m-4"></div>
+          <div className="flex"></div>
 
-        <Divider className="my-4"></Divider>
-        <Text>{getWords}</Text>
-        <Text css={{ fontFamily: "monospace", fontSize: "$md" }}>
-          {word.current.map((word, index) => {
-            return (
-              <Word
-                text={word}
-                active={index === activeWordIndex}
-                correct={correctWordArray[index]}
-              />
-            );
-          })}
-        </Text>
-        <Input
-          size="xl"
-          autoComplete="off"
-          autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck="false"
-          color="secondary"
-          autoFocus
-          clearable
-          underlined
-          initialValue="NextUI"
-          value={userInput}
-          onChange={(e) => processInput(e.target.value)}
-          onKeyDown={(e) => handleTabbed(e.key)}
-        />
-      </Card>
-      <button onClick={handleReset}>reset</button>
-    </div>
+          <Timer
+            startCounting={startCounting}
+            correctWords={correctWordArray.filter(Boolean).length}
+            timeElapsed={timeElapsed}
+            setTimeElapsed={setTimeElapsed}
+          />
+
+          <p>{typingList}</p>
+          <p css={{ fontFamily: "monospace", fontSize: "$md" }}>
+            {word.current.map((word, index) => {
+              return (
+                <Word
+                  text={word}
+                  active={index === activeWordIndex}
+                  correct={correctWordArray[index]}
+                />
+              );
+            })}
+          </p>
+          <input
+            className=" opacity-10 bg-black rounded-md p-2 my-3 w-full"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            autoFocus
+            clearable
+            value={userInput}
+            onChange={(e) => processInput(e.target.value)}
+            onKeyDown={(e) => handleTabbed(e)}
+          />
+        </div>
+        <button onClick={handleReset}>reset</button>
+      </div>
+    </motion.div>
   );
 }
 

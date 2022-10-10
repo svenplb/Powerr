@@ -8,22 +8,18 @@ function Word({ text, active, correct }) {
   });
 
   if (correct === true) {
-    return <span className="correct text-teal-400">{text} </span>;
+    return <span className=" text-green-100 opacity-50">{text} </span>;
   }
 
   if (correct === false) {
-    return <span className=" text-rose-900">{text} </span>;
+    return <span className=" bg-green-500 bg-opacity-20 text-green-300 rounded-sm mr-1">{text} </span>;
   }
   if (active) {
-    return <span className="text-violet-400">{text} </span>;
+    return <span className=" text-green-400">{text} </span>;
   }
 
   return (
     <span
-      style={{
-        color: active ? "#9750DD" : "",
-        fontWeight: active ? "bold" : "b",
-      }}
     >
       {text}{" "}
     </span>

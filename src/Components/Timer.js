@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 function Timer(props) {
-  const [timeElapsed, setTimeElapsed] = useState(0);
-  const { correctWords, startCounting} = props;
+  const { correctWords, startCounting, timeElapsed, setTimeElapsed} = props;
 
   useEffect(() => {
     let id;
     if (startCounting) {
+      setTimeElapsed(0)
       id = setInterval(() => {
         setTimeElapsed((oldTime) => oldTime + 1);
       }, 1000);
     } else {
-      setTimeElapsed(0)
     }
     return () => {
       clearInterval(id);
@@ -23,7 +22,7 @@ function Timer(props) {
   return (
     <div>
       <p>Timer: {timeElapsed}</p>
-      <p>Speed: {correctWords / minutes || 0} WPM</p>
+      <p>Speed: {Math.round(correctWords / minutes || 0)} WPM</p>
     </div>
   );
 }
