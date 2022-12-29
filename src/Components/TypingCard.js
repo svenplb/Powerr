@@ -38,7 +38,7 @@ function TypingCard({}) {
   }
   function renderWords() {
     let genWords = "";
-    let wordAmount = 30;
+    let wordAmount = 10;
     for (let i = 0; i <= wordAmount; i++) {
       const randomNumber = [Math.floor(Math.random() * (150 - 1 + 1) + 1)];
       if(i == wordAmount) {
@@ -98,6 +98,7 @@ function TypingCard({}) {
         testFinished={testFinished}
         setTestFinished={setTestFinished}
       />
+          <button autoFocus onClick={() => handleReset()}>reset</button>
     </motion.div>
   ) : (
     //    startCounting={startCounting}
