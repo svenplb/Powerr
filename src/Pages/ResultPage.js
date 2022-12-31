@@ -13,7 +13,7 @@ export function ResultPage({
     <div>
       <Result
         correctWords={correctWordArray.filter(Boolean).length}
-        totalWords={getWords()}
+        totalWords={getWords}
         timeElapsed={timeElapsed}
         testFinished={testFinished}
         setTestFinished={setTestFinished}
