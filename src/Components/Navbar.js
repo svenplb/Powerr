@@ -7,7 +7,7 @@ function Navbar() {
       {/* Card */}
       <div>
         <div className="flex place-content-between">
-          <div className="flex gap-6 cursor-pointer">
+          <div className="flex gap-6 text-base text-stone-400">
             <p>
               <Link to="/home">/Home</Link>
             </p>

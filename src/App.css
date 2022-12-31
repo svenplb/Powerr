@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #181818;
-  color: white;
-  font-size: 2rem;
+  background-color: #252726;
+  color: #cbcbcb;
+  font-size: 1.5rem;
   width: 100vw;
 }
 * {
