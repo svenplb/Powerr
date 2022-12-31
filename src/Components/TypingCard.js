@@ -7,9 +7,7 @@ import commonWords from "../Data/word.json";
 function TypingCard({}) {
   let [typingList, setTypingList] = useState(renderWords());
 
-  const getWords = () => typingList.split(" ");
-
-  const [word, setWord] = useState(getWords());
+  const [word, setWord] = useState(typingList);
   const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [correctWordArray, setCorrectWordArray] = useState([]);
@@ -23,9 +21,9 @@ function TypingCard({}) {
     setStartCounting(false);
     setUserInput("");
     setTestFinished(false);
-    setTypingList((typingList = renderWords()));
-    getWords();
     renderWords();
+    setTypingList(renderWords());
+    setWord(typingList);
   }
 
   function renderWords() {
@@ -35,7 +33,8 @@ function TypingCard({}) {
     );
     return randomNumbers
       .map((index) => commonWords.commonWords[index])
-      .join(" ");
+      .join(" ")
+      .split(" ");
   }
 
   function handleTabbed(KeyCode) {
@@ -76,7 +75,7 @@ function TypingCard({}) {
 
   return testFinished ? (
     <ResultPage
-      getWords={getWords}
+      getWords={typingList}
       timeElapsed={timeElapsed}
       testFinished={testFinished}
       setTestFinished={setTestFinished}
@@ -84,18 +83,18 @@ function TypingCard({}) {
       correctWordArray={correctWordArray}
     />
   ) : (
-      <TypingPage
-        startCounting={startCounting}
-        timeElapsed={timeElapsed}
-        setTimeElapsed={setTimeElapsed}
-        word={word}
-        activeWordIndex={activeWordIndex}
-        correctWordArray={correctWordArray}
-        userInput={userInput}
-        processInput={processInput}
-        handleTabbed={handleTabbed}
-        handleReset={handleReset}
-      />
+    <TypingPage
+      startCounting={startCounting}
+      timeElapsed={timeElapsed}
+      setTimeElapsed={setTimeElapsed}
+      word={word}
+      activeWordIndex={activeWordIndex}
+      correctWordArray={correctWordArray}
+      userInput={userInput}
+      processInput={processInput}
+      handleTabbed={handleTabbed}
+      handleReset={handleReset}
+    />
   );
 }
 

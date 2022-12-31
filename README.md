@@ -1,7 +1,10 @@
 # ⚡Powerr
 Powerr is a minimal typing test in early development with a smooth design, built with React and Tailwind. It is a "remake" of an older typing test I made a while ago called Quoteleaf, but with a more stable and responsive design. This project is heavily inspired by Monkeytype and is being developed as a way for me to improve my skills with React.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f9be2295136f08ef2d29951ae9e52b9f8c61d13
 
 ## Features
 Minimalistic design,
