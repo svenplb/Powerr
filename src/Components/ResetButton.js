@@ -1,15 +1,10 @@
-import React from 'react'
-function ResetButton() {
-  
-  function handleReset() {
-    console.log("state resetted");
-  }
-
+import React from "react";
+export function ResetButton({ handleReset }) {
   return (
-    <div>
-      <button onClick={handleReset}>Reset</button>
-    </div>
-  )
+    <button autoFocus onClick={() => handleReset()}>
+      reset
+    </button>
+  );
 }
 
-export default ResetButton
+export default ResetButton;

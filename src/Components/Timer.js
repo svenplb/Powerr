@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect} from "react";
 
 function Timer(props) {
   const { correctWords, startCounting, timeElapsed, setTimeElapsed} = props;

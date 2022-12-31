@@ -1,6 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Container, Card } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
 function Navbar() {

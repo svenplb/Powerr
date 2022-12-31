@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import Timer from "./Timer";
 
 const Result = (props) => {
     const { correctWords, startCounting, totalWords, timeElapsed, testFinished, setTestFinished} = props;

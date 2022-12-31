@@ -1,22 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import commonWords from "../Data/word.json";
+import React, { useState } from "react";
 import "../App.css";
-import Word from "./Word";
-import ResetButton from "./ResetButton";
-import Result from "./Result";
-import Timer from "./Timer";
-import Wordlist from "./Wordlist";
-import { MotionConfig } from "framer-motion";
+import TypingPage from "../Pages/TypingPage";
+import ResultPage from "../Pages/ResultPage";
+import commonWords from "../Data/word.json";
 
 function TypingCard({}) {
   let [typingList, setTypingList] = useState(renderWords());
 
   const getWords = () => typingList.split(" ");
 
-  const wordAmount = 30;
-  // const word = useRef(getWords());
-  // const [wordtwo, setWordTwo] = useState(getWords());
   const [word, setWord] = useState(getWords());
   const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -34,22 +26,16 @@ function TypingCard({}) {
     setTypingList((typingList = renderWords()));
     getWords();
     renderWords();
-   
   }
+
   function renderWords() {
-    let genWords = "";
-    let wordAmount = 10;
-    for (let i = 0; i <= wordAmount; i++) {
-      const randomNumber = [Math.floor(Math.random() * (150 - 1 + 1) + 1)];
-      if(i == wordAmount) {
-        genWords = genWords + commonWords.commonWords[randomNumber];
-      }
-      else {
-        genWords = genWords + commonWords.commonWords[randomNumber] + " ";
-        
-      }
-    }
-    return(genWords);
+    const wordAmount = 50;
+    const randomNumbers = Array.from({ length: wordAmount }, () =>
+      Math.floor(Math.random() * (150 - 1 + 1) + 1)
+    );
+    return randomNumbers
+      .map((index) => commonWords.commonWords[index])
+      .join(" ");
   }
 
   function handleTabbed(KeyCode) {
@@ -65,7 +51,6 @@ function TypingCard({}) {
     }
 
     if (value.endsWith(" ")) {
-      // if (activeWordIndex === word.current.length - 1) {
       if (activeWordIndex === word.length - 1) {
         setUserInput("");
         setStartCounting(false);
@@ -80,7 +65,6 @@ function TypingCard({}) {
       setCorrectWordArray((data) => {
         const newword = value.trim();
         const newResult = [...data];
-        // newResult[activeWordIndex] = newword === word.current[activeWordIndex];
         newResult[activeWordIndex] = newword === word[activeWordIndex];
 
         return newResult;
@@ -89,61 +73,29 @@ function TypingCard({}) {
       setUserInput(value);
     }
   }
+
   return testFinished ? (
-    <motion.div>
-      <Result
-        correctWords={correctWordArray.filter(Boolean).length}
-        totalWords={getWords()}
-        timeElapsed={timeElapsed}
-        testFinished={testFinished}
-        setTestFinished={setTestFinished}
-      />
-          <button autoFocus onClick={() => handleReset()}>reset</button>
-    </motion.div>
+    <ResultPage
+      getWords={getWords}
+      timeElapsed={timeElapsed}
+      testFinished={testFinished}
+      setTestFinished={setTestFinished}
+      handleReset={handleReset}
+      correctWordArray={correctWordArray}
+    />
   ) : (
-    //    startCounting={startCounting}
-    //    correctWords={correctWordArray.filter(Boolean).length}
-
-    <motion.div>
-      <div className="TypingCard">
-        <div className="border-none">
-          <div className="flex"></div>
-          <div className="m-4"></div>
-          <div className="flex"></div>
-
-          <Timer
-            startCounting={startCounting}
-            correctWords={correctWordArray.filter(Boolean).length}
-            timeElapsed={timeElapsed}
-            setTimeElapsed={setTimeElapsed}
-          />
-          <p css={{ fontFamily: "monospace", fontSize: "$md" }}>
-            {/* {word.current.map((word, index) => { */}
-            {word.map((word, index) => {
-              return (
-                <Word
-                  text={word}
-                  active={index === activeWordIndex}
-                  correct={correctWordArray[index]}
-                />
-              );
-            })}
-          </p>
-          <input
-            className=" opacity-10 bg-black rounded-md p-2 my-3 w-full"
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            autoFocus
-            clearable
-            value={userInput}
-            onChange={(e) => processInput(e.target.value)}
-            onKeyDown={(e) => handleTabbed(e)}
-          />
-        </div>
-        <button onClick={handleReset}>reset</button>
-      </div>
-    </motion.div>
+      <TypingPage
+        startCounting={startCounting}
+        timeElapsed={timeElapsed}
+        setTimeElapsed={setTimeElapsed}
+        word={word}
+        activeWordIndex={activeWordIndex}
+        correctWordArray={correctWordArray}
+        userInput={userInput}
+        processInput={processInput}
+        handleTabbed={handleTabbed}
+        handleReset={handleReset}
+      />
   );
 }
 
