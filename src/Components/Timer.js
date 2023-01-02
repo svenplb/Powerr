@@ -9,7 +9,7 @@ function Timer(props) {
       setTimeElapsed(0)
       id = setInterval(() => {
         setTimeElapsed((oldTime) => oldTime + 1);
-      }, 1000);
+      }, 10);
     } else {
     }
     return () => {
@@ -18,10 +18,10 @@ function Timer(props) {
   }, [startCounting]);
 
 
-  const minutes = timeElapsed / 60;
+  const minutes = timeElapsed / 100 / 60;
   return (
     <div>
-      <p>Timer: {timeElapsed}</p>
+      <p>Timer: {timeElapsed / 100}</p>
       <p>Speed: {Math.round(correctWords / minutes || 0)} WPM</p>
     </div>
   );

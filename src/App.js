@@ -9,8 +9,8 @@ import InfoPage from "./Pages/InfoPage.js";
 
 function App() {
   return (
-    <div className=" theme-white">
-      <div className=" bg-skin-bgcol">
+    <div className=" theme-skullemoji">
+      <div className="">
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />

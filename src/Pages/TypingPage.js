@@ -19,24 +19,25 @@ export function TypingPage({
 }) {
   return (
     <div>
-      {" "}
-      <Timer
-        startCounting={startCounting}
-        correctWords={correctWordArray.filter(Boolean).length}
-        timeElapsed={timeElapsed}
-        setTimeElapsed={setTimeElapsed}
-      />
-      <TypingText
-        word={word}
-        activeWordIndex={activeWordIndex}
-        correctWordArray={correctWordArray}
-      />
-      <Input
-        userInput={userInput}
-        processInput={processInput}
-        handleTabbed={handleTabbed}
-      />
-      <ResetButton handleReset={handleReset} />
+      <div className="bg-skin-bgcol p-9 rounded-2xl backdrop-blur">
+        {" "}
+        <Timer
+          startCounting={startCounting}
+          correctWords={correctWordArray.filter(Boolean).length}
+          timeElapsed={timeElapsed}
+          setTimeElapsed={setTimeElapsed}
+        />
+        <TypingText
+          word={word}
+          activeWordIndex={activeWordIndex}
+          correctWordArray={correctWordArray}
+        />
+        <Input
+          userInput={userInput}
+          processInput={processInput}
+          handleTabbed={handleTabbed}
+        />
+      </div>
     </div>
   );
 }
