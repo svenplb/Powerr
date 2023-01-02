@@ -4,12 +4,13 @@
 
 body {
   /* background-color: white; */
-  background-color: #141d26;
+  /* background-color: #141d26; */
   /* background-color: #252726; */
   /* background-color: rgb(3, 3, 3); */
   color: #cbcbcb;
   font-size: 1.5rem;
   width: 100vw;
+
 }
 * {
   font-family: 'Rubik', sans-serif;
@@ -18,6 +19,28 @@ body {
 section {
   padding: 50px 25vw;
 }
+
+@layer base {
+  :root{
+    --color-textactive: rgb(251 146 60);
+    --color-text-wrong: rgb(253 186 116);
+    --fill-color:  rgba(249, 115, 22, 0.2);
+    --background-color: #252726;
+  }
+  .theme-dimmed {
+    --color-textactive: rgb(251 113 133);
+    --color-text-wrong: rgb(253 164 175);
+    --fill-color:   rgba(244, 63, 94, 0.2);
+    --background-color: #141d26;
+  }
+  .theme-hacker {
+    --color-textactive: rgb(124, 251, 113);
+    --color-text-wrong: rgb(170, 253, 164);
+    --fill-color:   rgba(63, 244, 63, 0.2);
+    --background-color: #030303;
+  }
+}
+
 
 @layer components {
   .headspace {

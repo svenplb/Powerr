@@ -5,6 +5,7 @@ function SettingsPage() {
     <div>
       <section>
       <Navbar/>
+      <h1></h1>
       </section>
     </div>
   )

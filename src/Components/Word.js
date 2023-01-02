@@ -12,10 +12,10 @@ function Word({ text, active, correct }) {
   }
 
   if (correct === false) {
-    return <span className="underline bg-orange-500 bg-opacity-20 text-orange-300 rounded-sm mr-1">{text} </span>;
+    return <span className="underline bg-skin-fill text-skin-wrong rounded-sm mr-1">{text} </span>;
   }
   if (active) {
-    return <span className=" text-orange-400">{text} </span>;
+    return <span className=" text-skin-base">{text} </span>;
   }
 
   return (
