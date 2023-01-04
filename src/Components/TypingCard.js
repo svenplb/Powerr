@@ -4,9 +4,10 @@ import TypingPage from "../Pages/TypingPage";
 import ResultPage from "../Pages/ResultPage";
 import commonWords from "../Data/word.json";
 
-function TypingCard({}) {
+function TypingCard({ }) {
+// function TypingCard({ wordAmount}) {
+  const [wordAmount, setWordAmount] = useState(50)
   let [typingList, setTypingList] = useState(renderWords());
-
   const [word, setWord] = useState(typingList);
   const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -27,7 +28,6 @@ function TypingCard({}) {
   }
 
   function renderWords() {
-    const wordAmount = 50;
     const randomNumbers = Array.from({ length: wordAmount }, () =>
       Math.floor(Math.random() * (150 - 1 + 1) + 1)
     );

@@ -1,11 +1,21 @@
 import React from 'react'
 import Navbar from "../Components/Navbar"
-function SettingsPage() {
+import ThemeButton from '../Components/ThemeButton'
+
+
+
+const SettingsPage = ({ changeTheme, changeWordAmount }) => {
   return (
     <div>
       <section>
-      <Navbar/>
-      <h1></h1>
+      <Navbar className = "headspace"/>
+      <h1 className='headspace'>Themes</h1>
+
+      <ThemeButton label="Powerr Classic" theme="normal-theme" onClick={changeTheme} />      
+      <ThemeButton label = "Skull" theme = "theme-skullemoji" onClick = {changeTheme}/>
+      <ThemeButton label = "Dimmed" theme = "theme-dimmed" onClick = {changeTheme}/>
+      <ThemeButton label = "QuoteLeaf" theme = "theme-quoteleaf" onClick = {changeTheme}/>
+
       </section>
     </div>
   )
