@@ -1,7 +1,7 @@
 
 const Result = (props) => {
-    const { correctWords, startCounting, totalWords, timeElapsed, testFinished, setTestFinished} = props;
-    const minutes = timeElapsed / 60  / 100;
+    const { correctWords, totalWords, timeElapsed} = props;
+    const minutes = timeElapsed / 60  / 10;
     return(
         <div className="">
             <p>Speed: {Math.round(correctWords / minutes || 0)} WPM</p>

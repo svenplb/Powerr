@@ -10,6 +10,7 @@ export function TypingText({ word, activeWordIndex, correctWordArray }) {
             text={word}
             active={index === activeWordIndex}
             correct={correctWordArray[index]}
+            key = {index}
           />
         );
       })}

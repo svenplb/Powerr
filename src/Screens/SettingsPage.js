@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import Navbar from "../Components/Navbar";
 import ThemeButton from "../Components/ThemeButton";
-
-const SettingsPage = ({ changeTheme, changeWordAmount }) => {
+import { WordAmountContext } from "../Components/WordProvider";
+const SettingsPage = () => {
+  const { wordAmount, changeWordAmount } = useContext(WordAmountContext);
   return (
     <div>
       <section>
@@ -12,6 +13,11 @@ const SettingsPage = ({ changeTheme, changeWordAmount }) => {
         <ThemeButton label="Skull" themeClassName="theme-skullemoji" />
         <ThemeButton label="Dimmed" themeClassName="theme-dimmed" />
         <ThemeButton label="QuoteLeaf" themeClassName="theme-quoteleaf" />
+    
+        <button onClick={() => {changeWordAmount(10)}}>10 words</button>
+        <button onClick={() => {changeWordAmount(25)}}>25 words</button>
+        <button onClick={() => {changeWordAmount(50)}}>50 words</button>
+        <button onClick={() => {changeWordAmount(100)}}>100 words</button>
       </section>
     </div>
   );

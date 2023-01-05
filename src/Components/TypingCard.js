@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import "../App.css";
 import TypingPage from "../Screens/TypingPage";
 import ResultPage from "../Screens/ResultPage";
 import commonWords from "../Data/word.json";
+import { WordAmountContext } from "./WordProvider";
 
-function TypingCard({}) {
+function TypingCard() {
+  const { wordAmount, changeWordAmount } = useContext(WordAmountContext);
   let [typingList, setTypingList] = useState(renderWords());
-
   const [word, setWord] = useState(typingList);
   const [userInput, setUserInput] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -27,7 +29,6 @@ function TypingCard({}) {
   }
 
   function renderWords() {
-    const wordAmount = 50;
     const randomNumbers = Array.from({ length: wordAmount }, () =>
       Math.floor(Math.random() * (150 - 1 + 1) + 1)
     );

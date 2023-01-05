@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 function Word({ text, active, correct }) {
   const rerender = useRef(0);
@@ -21,7 +21,7 @@ function Word({ text, active, correct }) {
   return (
     <span
     >
-      {text}{" "}
+      {" "}{text}
     </span>
   );
 }

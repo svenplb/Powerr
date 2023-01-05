@@ -3,7 +3,6 @@ import React from "react";
 import Timer from "../Components/Timer";
 import TypingText from "../Components/TypingText";
 import Input from "../Components/Input";
-import ResetButton from "../Components/ResetButton";
 
 export function TypingPage({
   startCounting,
