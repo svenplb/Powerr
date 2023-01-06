@@ -1,3 +1,4 @@
+import { Login } from "./Login";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -20,9 +21,7 @@ function Navbar() {
           </div>
           {/* Darkmode test */}
           <div className="flex">
-            <button>
-              hey
-            </button>
+            <Login />
           </div>
         </div>
       </div>
