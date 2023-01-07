@@ -1,4 +1,3 @@
-import { Login } from "./Login";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +20,9 @@ function Navbar() {
           </div>
           {/* Darkmode test */}
           <div className="flex">
-            <Login />
+            <button>
+              hey
+            </button>
           </div>
         </div>
       </div>
