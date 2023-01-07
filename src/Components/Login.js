@@ -1,9 +1,9 @@
 import React from "react";
-import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
+// import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
-const user = auth.currentUser;
+// const provider = new GoogleAuthProvider();
+// const auth = getAuth();
+// const user = auth.currentUser;
 
 export function Login({}) {
     function handleLogIn() {
