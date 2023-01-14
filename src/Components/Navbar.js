@@ -1,4 +1,3 @@
-import Auth from "./Auth";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +20,7 @@ function Navbar() {
           </div>
           {/* Darkmode test */}
           <div className="flex">
-            <Auth />
+            <div>Login</div>
           </div>
         </div>
       </div>
