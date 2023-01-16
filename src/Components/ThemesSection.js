@@ -9,10 +9,9 @@ export function ThemesSection({}) {
         <div className=" grid grid-cols-4 gap-10">
           <ThemeButton label="Default" themeClassName="normal-theme" />
           <ThemeButton label="Skull" themeClassName="theme-skullemoji" />
-          <ThemeButton label="Dimmed" themeClassName="theme-dimmed" />
           <ThemeButton label="QuoteLeaf" themeClassName="theme-quoteleaf" />
+          <ThemeButton label="Dimmed" themeClassName="theme-dimmed" />
           {/* <ThemeButton label="Dark" themeClassName="theme-dark" /> */}
-        
         </div>
       </div>
     </>

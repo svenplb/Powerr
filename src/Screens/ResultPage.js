@@ -12,7 +12,8 @@ export function ResultPage({
   return (
     <div className="">
       <Result
-        correctWords={correctWordArray.filter(Boolean).length}
+        correctWordAmount={correctWordArray.filter(Boolean).length}
+        correctWordArray={correctWordArray}
         totalWords={getWords}
         timeElapsed={timeElapsed}
         testFinished={testFinished}
