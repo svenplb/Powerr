@@ -11,7 +11,7 @@ const Result = (props) => {
   }
 
   return (
-    <div className=" bg-skin-bgcol p-9 rounded-2xl backdrop-blur">
+    <div className=" bg-skin-bgcol p-9 rounded-2xl backdrop-blur  outline">
       <p>WPM</p>
       <p className=" text-6xl mb-6 text-skin-base">
         {Math.round(correctWordAmount / minutes || 0)}
