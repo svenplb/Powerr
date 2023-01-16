@@ -24,8 +24,7 @@ function TypingCard() {
     setUserInput("");
     setTestFinished(false);
     renderWords();
-    setTypingList(renderWords());
-    setWord(typingList);
+    setWord(renderWords());
   }
 
   function renderWords() {
