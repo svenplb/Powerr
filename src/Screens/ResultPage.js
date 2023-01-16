@@ -10,7 +10,7 @@ export function ResultPage({
   correctWordArray,
 }) {
   return (
-    <div>
+    <div className="">
       <Result
         correctWords={correctWordArray.filter(Boolean).length}
         totalWords={getWords}
